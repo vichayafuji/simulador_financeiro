@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora CF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teste.css">
+
+</head>
+<body>
+        <div class="div-body">
+            <h2>Calculadora para o custo anual</h2>
+            <div class="div-aba">   
+                Insira o custo do transporte:                             
+                <input class="ipt" id="ipt_transporte" type="text">
+                <br><br>
+                Insira o custo dos cuidados com a carga:               
+                <input class="ipt" id="ipt_carga" type="text">
+                <br><br>
+                Insira o custo da mão-de-obra:                         
+                <input class="ipt" id="ipt_mdo" type="text">
+                <br><br>
+                Insira o prejuízo com as perdas da carga:                            
+                <input class="ipt" id="ipt_perda" type="text">
+                <br><br>
+                Insira a carga média por transporte, em toneladas:
+                <input class="ipt" id="ipt_massa" type="text">
+                <br><br>
+                <button class="botao" onclick="bt_calculo()">Calcular economia</button>
+            </div>
+            <br>
+            <div id="spanText"></div>
+            <br>
+        </div>
+</body>
+</html>
+<script>
+    function bt_calculo() 
+    {
+        var ax_transporte = Number(ipt_transporte.value);
+        var ax_carga = Number (ipt_carga.value);
+        var ax_mdo = Number (ipt_mdo.value);
+        var ax_perda = Number (ipt_perda.value);
+        var ax_massa = Number (ipt_massa.value);
+
+        if (ax_transporte < 0)
+        {
+            alert (`Erro`);
+            ipt_transporte.value = ``;
+            spanText.innerHTML = `Erro`;
+        }
+        else if (ax_carga < 0)
+        {
+            alert (`Erro`);
+            ipt_carga.value = ``;
+            spanText.innerHTML = `Erro`;
+        }
+        else if (ax_mdo < 0)
+        {
+            alert (`Erro`);
+            ipt_mdo.value = ``;
+            spanText.innerHTML = `Erro`;
+        }
+        else if (ax_perda < 0)
+        {
+            alert (`Erro`);
+            ipt_perda.value = ``;
+            spanText.innerHTML = `Erro`;
+        }
+        else if (ax_massa < 0)
+        {
+            alert (`Erro`);
+            ipt_massa.value = ``;
+            spanText.innerHTML = `Erro`;
+        }
+        else
+        {
+            var ax_calculo = ax_transporte + ax_carga + ax_mdo + ax_perda;
+            var ax_media = ax_calculo / ax_massa;
+            var ax_economia = ax_calculo * 0.2 / ax_massa;
+            spanText.innerHTML = `O custo total por tonelada de carne foi de <b>R$ ${ax_media.toFixed(2)}</b>. Com a implantação da nova tecnologia, o custo será reduzido em <b>R$ ${ax_economia.toFixed(2)}</b>, ou seja, um total de <b>20% do valor do custo total</b>.`;
+        }
+    }
+</script>
