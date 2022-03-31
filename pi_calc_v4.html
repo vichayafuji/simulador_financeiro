@@ -77,9 +77,9 @@
             var ax_custo2 = ax_perda;
             var ax_economia1 = ax_custo1 * 0.2;
             var ax_economia2 = ax_custo2 * 0.3;
-            var ax_total = (ax_custo1 + ax_custo2)
-            var ax_parcial1 = (ax_custo1 - ax_economia1)
-            var ax_parcial2 = (ax_custo2 - ax_economia2)
+            var ax_total = ax_custo1 + ax_custo2;
+            var ax_parcial1 = ax_custo1 - ax_economia1;
+            var ax_parcial2 = ax_custo2 - ax_economia2;
             var ax_total_final = ax_parcial1 + ax_parcial2;
             var ax_economia = ax_economia1 + ax_economia2;
             spanText1.innerHTML = `Custo total antes: <b>R$ ${ax_total.toFixed(2)}</b>.`
