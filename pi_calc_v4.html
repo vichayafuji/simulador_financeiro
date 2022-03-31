@@ -13,7 +13,7 @@
 </head>
 <body>
         <div class="div-body">
-            <h2>Calculadora para o custo anual</h2>
+            <h2>Calculadora para o custo do transporte</h2>
             <div class="div-aba">   
                 Insira o custo do transporte:                             
                 <input class="ipt" id="ipt_transporte" type="text">
@@ -27,9 +27,6 @@
                 Insira o prejuízo com as perdas da carga:                            
                 <input class="ipt" id="ipt_perda" type="text">
                 <br><br>
-                Insira a carga média por transporte, em toneladas:
-                <input class="ipt" id="ipt_massa" type="text">
-                <br><br>
                 <button class="botao" onclick="bt_calculo()">Calcular economia</button>
             </div>
             <br>
@@ -37,6 +34,7 @@
             <div id="spanText2"></div>
             <div id="spanText3"></div>
             <div id="spanText4"></div>
+            <div id="spanText5"></div>
             <br>
         </div>
 </body>
@@ -48,37 +46,30 @@
         var ax_carga = Number (ipt_carga.value);
         var ax_mdo = Number (ipt_mdo.value);
         var ax_perda = Number (ipt_perda.value);
-        var ax_massa = Number (ipt_massa.value);
 
         if (ax_transporte < 0)
         {
             alert (`Erro`);
             ipt_transporte.value = ``;
-            spanText.innerHTML = `Erro`;
+            spanText1.innerHTML = `Erro`;
         }
         else if (ax_carga < 0)
         {
             alert (`Erro`);
             ipt_carga.value = ``;
-            spanText.innerHTML = `Erro`;
+            spanText1.innerHTML = `Erro`;
         }
         else if (ax_mdo < 0)
         {
             alert (`Erro`);
             ipt_mdo.value = ``;
-            spanText.innerHTML = `Erro`;
+            spanText1.innerHTML = `Erro`;
         }
         else if (ax_perda < 0)
         {
             alert (`Erro`);
             ipt_perda.value = ``;
-            spanText.innerHTML = `Erro`;
-        }
-        else if (ax_massa < 0)
-        {
-            alert (`Erro`);
-            ipt_massa.value = ``;
-            spanText.innerHTML = `Erro`;
+            spanText1.innerHTML = `Erro`;
         }
         else
         {
@@ -86,15 +77,16 @@
             var ax_custo2 = ax_perda;
             var ax_economia1 = ax_custo1 * 0.2;
             var ax_economia2 = ax_custo2 * 0.3;
-            var ax_total = (ax_custo1 + ax_custo2) / ax_massa;
-            var ax_parcial1 = (ax_custo1 - ax_economia1) / ax_massa;
-            var ax_parcial2 = (ax_custo2 - ax_economia2) / ax_massa;
+            var ax_total = (ax_custo1 + ax_custo2)
+            var ax_parcial1 = (ax_custo1 - ax_economia1)
+            var ax_parcial2 = (ax_custo2 - ax_economia2)
             var ax_total_final = ax_parcial1 + ax_parcial2;
-            spanText1.innerHTML = `Custo total: <b>R$ ${ax_total.toFixed(2)}</b>.`
-            spanText2.innerHTML = `Custo das perdas após aplicada a nossa tecnologia será reduzido para: <b>R$ ${ax_parcial2.toFixed(2)}</b>.`
+            var ax_economia = ax_economia1 + ax_economia2;
+            spanText1.innerHTML = `Custo total antes: <b>R$ ${ax_total.toFixed(2)}</b>.`
+            spanText2.innerHTML = `Custo das perdas será reduzido para: <b>R$ ${ax_parcial2.toFixed(2)}</b>.`
             spanText3.innerHTML = `Custo de transporte, cuidados com a carga e mão-de-obra será reduzido para: <b>R$ ${ax_parcial1.toFixed(2)}</b>.`
             spanText4.innerHTML = `Custo total após as reduções: <b>R$ ${ax_total_final.toFixed(2)}</b>.`
-
+            spanText5.innerHTML = `Total economizado: <b>R$ ${ax_economia.toFixed(2)}</b>`
         }
     }
 </script>
